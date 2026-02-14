@@ -1,0 +1,86 @@
+openapi: 3.0.4
+info:
+  title: Unemployment Rate
+  description: >-
+    Unemployment Rate is a tool for retrieving unemployment statistics by
+    country. It returns the unemployment rate as a percentage of the total labor
+    force, with data available for over 200 countries from 1991 to present.
+  termsOfService: https://apiverve.com/terms/
+  contact:
+    name: APIVerve Support
+    email: hello@apiverve.com
+    url: https://apiverve.com/contact
+  version: 1.0.0
+externalDocs:
+  description: Learn more about APIVerve
+  url: https://docs.apiverve.com?utm_source=openapi
+servers:
+  - url: https://api.apiverve.com/
+paths:
+  /v1/unemployment:
+    get:
+      summary: Get Unemployment Rate
+      description: Get the current or historical unemployment rate for a specific country.
+      operationId: unemployment
+      parameters:
+        - name: country
+          in: query
+          schema:
+            type: string
+          required: true
+          description: >-
+            ISO country code (2 or 3 letter). Examples: US, USA, DE, DEU, GB,
+            GBR
+          example: USA
+        - name: year
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: >-
+            Specific year to retrieve data for (1991-present). Returns latest if
+            not specified.
+          example: 2023
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: status
+                  error:
+                    type: string
+                    description: error
+                  data:
+                    type: object
+                    description: data
+              example:
+                status: ok
+                error: null
+                data:
+                  country: USA
+                  countryName: United States
+                  year: 2024
+                  count: 1
+                  historical:
+                    - year: 2024
+                      rate: 4.02
+                code: 200
+        '401':
+          description: Your request was not authorized, or your API Key was invalid
+        '404':
+          description: Requested resource was not found
+        '500':
+          description: A server error has occurred, try again later
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header
+security:
+  - api_key: []
