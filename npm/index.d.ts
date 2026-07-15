@@ -4,25 +4,37 @@ declare module '@apiverve/unemployment' {
     secure?: boolean;
   }
 
+  /**
+   * Describes fields the current plan does not unlock. Locked fields arrive as null
+   * in `data`; `locked_fields` names them, using dot paths for nested fields.
+   * Absent when the plan unlocks everything.
+   */
+  export interface PremiumInfo {
+    message: string;
+    upgrade_url: string;
+    locked_fields: string[];
+  }
+
   export interface unemploymentResponse {
     status: string;
     error: string | null;
     data: UnemploymentRateData;
     code?: number;
+    premium?: PremiumInfo;
   }
 
 
   interface UnemploymentRateData {
-      country:     string;
-      countryName: string;
-      year:        number;
-      count:       number;
+      country:     null | string;
+      countryName: null | string;
+      year:        number | null;
+      count:       number | null;
       historical:  Historical[];
   }
   
   interface Historical {
-      year: number;
-      rate: number;
+      year: number | null;
+      rate: number | null;
   }
 
   export default class unemploymentWrapper {
