@@ -25,6 +25,9 @@ namespace APIVerve.API.UnemploymentRate
 
         [JsonProperty("data")]
         public Data Data { get; set; }
+
+        [JsonProperty("premium")]
+        public Premium Premium { get; set; }
     }
 
     public partial class Data
@@ -36,10 +39,10 @@ namespace APIVerve.API.UnemploymentRate
         public string CountryName { get; set; }
 
         [JsonProperty("year")]
-        public long Year { get; set; }
+        public long? Year { get; set; }
 
         [JsonProperty("count")]
-        public long Count { get; set; }
+        public long? Count { get; set; }
 
         [JsonProperty("historical")]
         public Historical[] Historical { get; set; }
@@ -48,9 +51,21 @@ namespace APIVerve.API.UnemploymentRate
     public partial class Historical
     {
         [JsonProperty("year")]
-        public long Year { get; set; }
+        public long? Year { get; set; }
 
         [JsonProperty("rate")]
-        public double Rate { get; set; }
+        public double? Rate { get; set; }
+    }
+
+    public partial class Premium
+    {
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        [JsonProperty("upgrade_url")]
+        public Uri UpgradeUrl { get; set; }
+
+        [JsonProperty("locked_fields")]
+        public string[] LockedFields { get; set; }
     }
 }
