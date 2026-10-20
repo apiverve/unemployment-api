@@ -1,7 +1,7 @@
 {
   "name": "@apiverve/unemployment",
-  "version": "1.2.0",
-  "description": "Unemployment Rate is a tool for retrieving unemployment statistics by country. It returns the unemployment rate as a percentage of the total labor force, with data available for over 200 countries from 1991 to present.",
+  "version": "1.2.2",
+  "description": "Unemployment Rate looks up labor statistics by two- or three-letter ISO country code. It returns the country name, reporting year, and record count, with paid plans adding historical annual rates.",
   "main": "index.js",
   "types": "index.d.ts",
   "sideEffects": false,
@@ -34,7 +34,7 @@
   "bugs": {
     "url": "https://github.com/apiverve/unemployment-api/issues"
   },
-  "homepage": "https://apiverve.com/marketplace/unemployment?utm_source=npm&utm_medium=homepage",
+  "homepage": "https://apiverve.com/marketplace/unemployment?utm_source=npm&utm_medium=referral&utm_content=homepage",
   "devDependencies": {
     "mocha": "^11.0.1",
     "chai": "^5.1.2",
