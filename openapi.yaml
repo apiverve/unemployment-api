@@ -2,9 +2,9 @@ openapi: 3.0.4
 info:
   title: Unemployment Rate
   description: >-
-    Unemployment Rate is a tool for retrieving unemployment statistics by
-    country. It returns the unemployment rate as a percentage of the total labor
-    force, with data available for over 200 countries from 1991 to present.
+    Unemployment Rate looks up labor statistics by two- or three-letter ISO
+    country code. It returns the country name, reporting year, and record count,
+    with paid plans adding historical annual rates.
   termsOfService: https://apiverve.com/terms/
   contact:
     name: APIVerve Support
@@ -19,7 +19,7 @@ servers:
 paths:
   /v1/unemployment:
     get:
-      summary: Get Unemployment Rate
+      summary: Unemployment Rate
       description: Get the current or historical unemployment rate for a specific country.
       operationId: unemployment
       parameters:
