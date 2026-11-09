@@ -1,6 +1,6 @@
 # Unemployment Rate API - PHP Package
 
-Unemployment Rate looks up labor statistics by two- or three-letter ISO country code. It returns the country name, reporting year, and record count, with paid plans adding historical annual rates.
+Unemployment Rate looks up labor statistics by two- or three-letter ISO country code. It returns the country name, reporting year, and record count, with paid plans adding historical annual rates. With changes=true it also returns whether unemployment rose or fell, and on paid plans the previous year and its rate, the 1- and 5-year change in percentage points, and the 5-year high, low and average.
 
 ## Installation
 
@@ -29,7 +29,8 @@ $client = new Client('YOUR_API_KEY');
 // Make a request
 $response = $client->execute([
     'country' => 'USA',
-    'year' => 2023
+    'year' => 2023,
+    'changes' => true
 ]);
 
 // Print the response
@@ -45,7 +46,7 @@ use APIVerve\Unemployment\Exceptions\APIException;
 use APIVerve\Unemployment\Exceptions\ValidationException;
 
 try {
-    $response = $client->execute(['country' => 'USA', 'year' => 2023]);
+    $response = $client->execute(['country' => 'USA', 'year' => 2023, 'changes' => true]);
     print_r($response['data']);
 } catch (ValidationException $e) {
     echo "Validation error: " . implode(', ', $e->getErrors());
@@ -74,14 +75,22 @@ $client = new Client(
   "data": {
     "country": "USA",
     "countryName": "United States",
-    "year": 2024,
+    "year": 2025,
     "count": 1,
     "historical": [
       {
-        "year": 2024,
-        "rate": 4.02
+        "year": 2025,
+        "rate": 4.2
       }
-    ]
+    ],
+    "previousYear": 2024,
+    "changeDirection": "up",
+    "previousRate": 4.02,
+    "change1y": 0.18,
+    "change5y": -3.85,
+    "high5y": 5.35,
+    "low5y": 3.64,
+    "average5y": 4.172
   },
   "code": 200
 }
