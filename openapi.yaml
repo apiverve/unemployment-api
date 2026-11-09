@@ -4,7 +4,10 @@ info:
   description: >-
     Unemployment Rate looks up labor statistics by two- or three-letter ISO
     country code. It returns the country name, reporting year, and record count,
-    with paid plans adding historical annual rates.
+    with paid plans adding historical annual rates. With changes=true it also
+    returns whether unemployment rose or fell, and on paid plans the previous
+    year and its rate, the 1- and 5-year change in percentage points, and the
+    5-year high, low and average.
   termsOfService: https://apiverve.com/terms/
   contact:
     name: APIVerve Support
@@ -20,7 +23,10 @@ paths:
   /v1/unemployment:
     get:
       summary: Unemployment Rate
-      description: Get the current or historical unemployment rate for a specific country.
+      description: >-
+        Get the current or historical unemployment rate for a specific country.
+        With changes=true, adds the move against the previous year, the 5-year
+        change and the 5-year high, low and average.
       operationId: unemployment
       parameters:
         - name: country
@@ -41,6 +47,15 @@ paths:
             Specific year to retrieve data for (1991-present). Returns latest if
             not specified.
           example: 2023
+        - name: changes
+          in: query
+          schema:
+            type: boolean
+          required: false
+          description: >-
+            Include the change against the previous year, the 5-year change and
+            the 5-year high, low and average rate
+          example: true
       responses:
         '200':
           description: Successful Response
@@ -64,11 +79,19 @@ paths:
                 data:
                   country: USA
                   countryName: United States
-                  year: 2024
+                  year: 2025
                   count: 1
                   historical:
-                    - year: 2024
-                      rate: 4.02
+                    - year: 2025
+                      rate: 4.2
+                  previousYear: 2024
+                  changeDirection: up
+                  previousRate: 4.02
+                  change1y: 0.18
+                  change5y: -3.85
+                  high5y: 5.35
+                  low5y: 3.64
+                  average5y: 4.172
                 code: 200
         '401':
           description: Your request was not authorized, or your API Key was invalid

@@ -1,6 +1,6 @@
 # [Unemployment Rate API](https://apiverve.com/marketplace/unemployment?utm_source&#x3D;github&amp;utm_medium&#x3D;referral&amp;utm_content&#x3D;readme)
 
-Unemployment Rate looks up labor statistics by two- or three-letter ISO country code. It returns the country name, reporting year, and record count, with paid plans adding historical annual rates.
+Unemployment Rate looks up labor statistics by two- or three-letter ISO country code. It returns the country name, reporting year, and record count, with paid plans adding historical annual rates. With changes&#x3D;true it also returns whether unemployment rose or fell, and on paid plans the previous year and its rate, the 1- and 5-year change in percentage points, and the 5-year high, low and average.
 
 The Unemployment Rate API provides a simple, reliable way to integrate unemployment rate functionality into your applications. Built for developers who need production-ready unemployment rate capabilities without the complexity of building from scratch.
 
@@ -31,7 +31,8 @@ The Unemployment Rate API provides a simple, reliable way to integrate unemploym
 async function callUnemploymentRateAPI() {
     try {
         const params = new URLSearchParams({
-            country: 'USA'
+            country: 'USA',
+            changes: true
         });
 
         const response = await fetch(`https://api.apiverve.com/v1/unemployment?${params}`, {
@@ -54,7 +55,7 @@ callUnemploymentRateAPI();
 ### Using cURL
 
 ```bash
-curl -X GET "https://api.apiverve.com/v1/unemployment?country=USA" \
+curl -X GET "https://api.apiverve.com/v1/unemployment?country=USA&changes=true" \
   -H "x-api-key: YOUR_API_KEY_HERE"
 ```
 
@@ -213,14 +214,22 @@ A real response from the Unemployment Rate API:
   "data": {
     "country": "USA",
     "countryName": "United States",
-    "year": 2024,
+    "year": 2025,
     "count": 1,
     "historical": [
       {
-        "year": 2024,
-        "rate": 4.02
+        "year": 2025,
+        "rate": 4.2
       }
-    ]
+    ],
+    "previousYear": 2024,
+    "changeDirection": "up",
+    "previousRate": 4.02,
+    "change1y": 0.18,
+    "change5y": -3.85,
+    "high5y": 5.35,
+    "low5y": 3.64,
+    "average5y": 4.172
   },
   "code": 200
 }
