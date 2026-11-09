@@ -21,5 +21,11 @@ namespace APIVerve.API.UnemploymentRate
         /// </summary>
         [JsonProperty("year")]
         public int? Year { get; set; }
+
+        /// <summary>
+        /// Include the change against the previous year, the 5-year change and the 5-year high, low and average rate
+        /// </summary>
+        [JsonProperty("changes")]
+        public bool? Changes { get; set; }
     }
 }

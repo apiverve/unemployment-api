@@ -1,7 +1,7 @@
 Unemployment Rate API
 ============
 
-Unemployment Rate looks up labor statistics by two- or three-letter ISO country code. It returns the country name, reporting year, and record count, with paid plans adding historical annual rates.
+Unemployment Rate looks up labor statistics by two- or three-letter ISO country code. It returns the country name, reporting year, and record count, with paid plans adding historical annual rates. With changes=true it also returns whether unemployment rose or fell, and on paid plans the previous year and its rate, the 1- and 5-year change in percentage points, and the 5-year high, low and average.
 
 
 [![NuGet version](https://img.shields.io/nuget/v/APIVerve.API.UnemploymentRate.svg)](https://www.nuget.org/packages/APIVerve.API.UnemploymentRate)
@@ -61,7 +61,8 @@ class Program
 
         var queryOptions = new UnemploymentRateQueryOptions {
             Country = "USA",
-            Year = 2023
+            Year = 2023,
+            Changes = true
         };
 
         // Make the API call
@@ -126,7 +127,8 @@ public class Example
 
         var queryOptions = new UnemploymentRateQueryOptions {
             Country = "USA",
-            Year = 2023
+            Year = 2023,
+            Changes = true
         };
 
         var response = await apiClient.ExecuteAsync(queryOptions);
@@ -159,7 +161,8 @@ public class Example
 
         var queryOptions = new UnemploymentRateQueryOptions {
             Country = "USA",
-            Year = 2023
+            Year = 2023,
+            Changes = true
         };
 
         var response = apiClient.Execute(queryOptions);
@@ -197,7 +200,8 @@ public class Example
 
         var queryOptions = new UnemploymentRateQueryOptions {
             Country = "USA",
-            Year = 2023
+            Year = 2023,
+            Changes = true
         };
 
         try
@@ -254,7 +258,8 @@ public class Example
 
         var queryOptions = new UnemploymentRateQueryOptions {
             Country = "USA",
-            Year = 2023
+            Year = 2023,
+            Changes = true
         };
 
         try
@@ -296,7 +301,8 @@ apiClient.AddCustomHeader("X-Request-ID", Guid.NewGuid().ToString());
 
 var queryOptions = new UnemploymentRateQueryOptions {
     Country = "USA",
-    Year = 2023
+    Year = 2023,
+    Changes = true
 };
 
 var response = await apiClient.ExecuteAsync(queryOptions);
@@ -323,7 +329,8 @@ apiClient.SetLogger(message =>
 
 var queryOptions = new UnemploymentRateQueryOptions {
     Country = "USA",
-    Year = 2023
+    Year = 2023,
+    Changes = true
 };
 
 var response = await apiClient.ExecuteAsync(queryOptions);
@@ -342,7 +349,8 @@ apiClient.SetRetryDelay(1500);        // Wait 1.5 seconds between retries (defau
 
 var queryOptions = new UnemploymentRateQueryOptions {
     Country = "USA",
-    Year = 2023
+    Year = 2023,
+    Changes = true
 };
 
 var response = await apiClient.ExecuteAsync(queryOptions);
@@ -355,7 +363,8 @@ The API client implements `IDisposable` for proper resource cleanup:
 ```csharp
 var queryOptions = new UnemploymentRateQueryOptions {
     Country = "USA",
-    Year = 2023
+    Year = 2023,
+    Changes = true
 };
 
 using (var apiClient = new UnemploymentRateAPIClient("[YOUR_API_KEY]"))
@@ -377,14 +386,22 @@ using (var apiClient = new UnemploymentRateAPIClient("[YOUR_API_KEY]"))
   "data": {
     "country": "USA",
     "countryName": "United States",
-    "year": 2024,
+    "year": 2025,
     "count": 1,
     "historical": [
       {
-        "year": 2024,
-        "rate": 4.02
+        "year": 2025,
+        "rate": 4.2
       }
-    ]
+    ],
+    "previousYear": 2024,
+    "changeDirection": "up",
+    "previousRate": 4.02,
+    "change1y": 0.18,
+    "change5y": -3.85,
+    "high5y": 5.35,
+    "low5y": 3.64,
+    "average5y": 4.172
   },
   "code": 200
 }

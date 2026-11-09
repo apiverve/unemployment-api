@@ -68,7 +68,8 @@ namespace APIVerve.API.UnemploymentRate
         private static readonly Dictionary<string, ValidationRule> _validationRules = new Dictionary<string, ValidationRule>
         {
             { "country", new ValidationRule { Type = "string", Required = true, MinLength = 2, MaxLength = 3 } },
-            { "year", new ValidationRule { Type = "integer", Required = false, Min = 1991, Max = 2030 } }
+            { "year", new ValidationRule { Type = "integer", Required = false, Min = 1991, Max = 2030 } },
+            { "changes", new ValidationRule { Type = "boolean", Required = false } }
         };
 
         /// <summary>Format validation patterns</summary>

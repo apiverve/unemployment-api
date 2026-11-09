@@ -46,6 +46,30 @@ namespace APIVerve.API.UnemploymentRate
 
         [JsonProperty("historical")]
         public Historical[] Historical { get; set; }
+
+        [JsonProperty("previousYear")]
+        public long? PreviousYear { get; set; }
+
+        [JsonProperty("changeDirection")]
+        public string ChangeDirection { get; set; }
+
+        [JsonProperty("previousRate")]
+        public double? PreviousRate { get; set; }
+
+        [JsonProperty("change1y")]
+        public double? Change1Y { get; set; }
+
+        [JsonProperty("change5y")]
+        public double? Change5Y { get; set; }
+
+        [JsonProperty("high5y")]
+        public double? High5Y { get; set; }
+
+        [JsonProperty("low5y")]
+        public double? Low5Y { get; set; }
+
+        [JsonProperty("average5y")]
+        public double? Average5Y { get; set; }
     }
 
     public partial class Historical
