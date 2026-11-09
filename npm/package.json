@@ -1,7 +1,7 @@
 {
   "name": "@apiverve/unemployment",
-  "version": "1.2.4",
-  "description": "Unemployment Rate looks up labor statistics by two- or three-letter ISO country code. It returns the country name, reporting year, and record count, with paid plans adding historical annual rates.",
+  "version": "1.2.5",
+  "description": "Unemployment Rate looks up labor statistics by two- or three-letter ISO country code. It returns the country name, reporting year, and record count, with paid plans adding historical annual rates. With changes=true it also returns whether unemployment rose or fell, and on paid plans the previous year and its rate, the 1- and 5-year change in percentage points, and the 5-year high, low and average.",
   "main": "index.js",
   "types": "index.d.ts",
   "sideEffects": false,

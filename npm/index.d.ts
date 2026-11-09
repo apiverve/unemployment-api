@@ -25,11 +25,19 @@ declare module '@apiverve/unemployment' {
 
 
   interface UnemploymentRateData {
-      country:     null | string;
-      countryName: null | string;
-      year:        number | null;
-      count:       number | null;
-      historical:  Historical[];
+      country:         null | string;
+      countryName:     null | string;
+      year:            number | null;
+      count:           number | null;
+      historical:      Historical[];
+      previousYear:    number | null;
+      changeDirection: null | string;
+      previousRate:    number | null;
+      change1Y:        number | null;
+      change5Y:        number | null;
+      high5Y:          number | null;
+      low5Y:           number | null;
+      average5Y:       number | null;
   }
   
   interface Historical {

@@ -16,7 +16,8 @@ const api = new unemploymentAPI({
 // Example query
 var query = {
   country: "USA",
-  year: 2023
+  year: 2023,
+  changes: false
 };
 
 // Make the API request using callback
